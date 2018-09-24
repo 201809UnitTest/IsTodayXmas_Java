@@ -14,9 +14,20 @@ public class HolidayTests {
         responseShouldBe("Merry Xmas");
     }
 
+    @Test
+    public void today_is_xmas_12_24() {
+        givenToday(12, 24);
+        responseShouldBe("Merry Xmas");
+    }
+
+    @Test
+    public void today_is_not_xmas() {
+        givenToday(11, 25);
+        responseShouldBe("Today is not Xmas");
+    }
+
     private void responseShouldBe(String expected) {
-        String response = holiday.sayXmas();
-        assertEquals(expected, response);
+        assertEquals(expected, holiday.sayXmas());
     }
 
     private void givenToday(int month, int dayOfMonth) {
