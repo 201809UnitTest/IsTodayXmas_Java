@@ -6,13 +6,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HolidayTests {
 
+    private final FakeHoliday holiday = new FakeHoliday();
+
     @Test
     public void today_is_xmas() {
-//        Holiday holiday = new Holiday();
-        FakeHoliday holiday = new FakeHoliday();
-        holiday.setToday(LocalDate.of(2018, 12, 25));
+        givenToday(12, 25);
+        responseShouldBe("Merry Xmas");
+    }
+
+    private void responseShouldBe(String expected) {
         String response = holiday.sayXmas();
-        assertEquals("Merry Xmas", response);
+        assertEquals(expected, response);
+    }
+
+    private void givenToday(int month, int dayOfMonth) {
+        holiday.setToday(LocalDate.of(2018, month, dayOfMonth));
     }
 
 }
